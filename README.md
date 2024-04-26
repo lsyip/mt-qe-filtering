@@ -12,16 +12,31 @@ Experiment setup for evaluating the effects of quality estimation filtering for 
 2. Preprocess all split datasets using ``` Data_Preprocessing\preprocess.sh ```. Change paths to to point to your train, valid, and test set locations.
 
 ## Experiment 1
-1. Run ``` fs_tq_v1.py ``` for each split. Change the source and target data to test.de and test.en, respectively. Change the checkpoint and databin paths for all 7 splits. 
-2. In line 76, save sentences that are rated less than 0.70 : ``` if (pred < 0.70) ```
+1. Run ``` fs_tq_v1.py ``` for each split. Change the source and target data to test.de and test.en, respectively. Change the checkpoint and databin paths for all 7 splits. In line 76, save sentences that are rated less than 0.70 : ``` if (pred < 0.70) ```
+2. Preprocess the saved sentences using ``` Data_Preprocessing\preprocess.sh ```
 3. Fine-tune the original models for each split with ```finetune.sh ```. Change the paths to the tokenized data, checkpoint_best.pt, and save directory. 
 
 ## Experiment 2
-1. Run ``` fs_tq_v1.py ``` for each split. Change the source and target data to train.de and train.en, respectively. Change the checkpoint and databin paths for all 7 splits. 
-2. In line 76, save sentences that are rated less than 0.712 : ``` if (pred < 0.712) ```
+1. Run ``` fs_tq_v1.py ``` for each split. Change the source and target data to train.de and train.en, respectively. Change the checkpoint and databin paths for all 7 splits. In line 76, save sentences that are rated less than 0.712 : ``` if (pred < 0.712) ```
+2. Preprocess the saved sentences using ``` Data_Preprocessing\preprocess.sh ```
 3. Fine-tune the original models for each split with ```finetune.sh ```. Change the paths to the tokenized data, checkpoint_best.pt, and save directory. 
 
 ## Experiment 3
-1. Run ``` fs_tq_v1.py ``` for each split. Change the source and target data to train.de and train.en, respectively. Change the checkpoint and databin paths for all 7 splits. 
-2. In line 76, save sentences that are rated higher than 0.712 : ``` if (pred > 0.712) ```
+1. Run ``` fs_tq_v1.py ``` for each split. Change the source and target data to train.de and train.en, respectively. Change the checkpoint and databin paths for all 7 splits. In line 76, save sentences that are rated higher than 0.712 : ``` if (pred > 0.712) ```
+2. Preprocess the saved sentences using ``` Data_Preprocessing\preprocess.sh ```
 3. Fine-tune the original models for each split with ```finetune.sh ```. Change the paths to the tokenized data, checkpoint_best.pt, and save directory. 
+
+## Experiment 4
+1. Run ``` tq_iwslt17.py ``` for each original dataset split. Change the source and target data to train.de and train.en, respectively. In line 76, save sentences that are rated higher than 0.712 : ``` if (pred > 0.712) ```
+2. Preprocess the saved sentences using ``` Data_Preprocessing\preprocess.sh ```
+3. Train a new model for each split with ```finetune.sh ``` with a learning rate ``` --lr 5e-4```. Omit line 18 ``` --finetune-from-model checkpoints-v4/checkpoint7/checkpoint_best.pt ```. Change the paths to the tokenized data, and save directory. 
+
+## Experiment 5
+1. Run ``` fs_tq_v4.py ``` for each split. Change the source and target data to train.de and train.en, respectively. Change the checkpoint to point to the models trained in experiment 4 and the databin path for all 7 splits. In line 79, save sentences that are rated higher than 0.712 : ``` if (pred > 0.712) ```
+2. Preprocess the saved sentences using ``` Data_Preprocessing\preprocess.sh ```
+3. Train a new model for each split with ```finetune.sh ```. Change the paths to the tokenized data, and save directory. 
+
+## Experiment 6
+1. Run ``` fs_tq_v4.py ``` for each split. Change the source and target data to train.de and train.en, respectively. Change the checkpoint to point to the models trained in experiment 4 and the databin path for all 7 splits. In line 79, save sentences that are rated lower than 0.712 : ``` if (pred < 0.712) ```
+2. Preprocess the saved sentences using ``` Data_Preprocessing\preprocess.sh ```
+3. Train a new model for each split with ```finetune.sh ```. Change the paths to the tokenized data, and save directory. 
