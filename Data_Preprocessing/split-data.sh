@@ -1,7 +1,7 @@
 #!/bin/bash -l
 
 #SBATCH --job-name=split-script
-#SBATCH --time=00:01:00
+#SBATCH --time=00:05:00
 #SBATCH --account=comp_sci
 #SBATCH --partition=gpu
 #SBATCH --nodes=1
