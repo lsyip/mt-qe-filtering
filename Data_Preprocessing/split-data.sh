@@ -5,21 +5,12 @@
 #SBATCH --account=comp_sci
 #SBATCH --partition=gpu
 #SBATCH --nodes=1
-#SBATCH --mail-type=end
-#SBATCH --mail-user=lyip@villanova.edu
 
 echo "Start job split script"
-module load python/3.8
-module load gcc/9.3.1
-
-source ~/miniconda/etc/profile.d/conda.sh
-conda activate fairseq-env
 
 # Define the initial file to split
-initial_file="lorem.txt"
-
-# Make a copy of the initial file to save it
-# cp "$initial_file" "lorem.txt"
+file1="train.de"  # path to train.de
+file2="train.en" # path to train.en
 
 # Function to split the file by lines, rename the first half, and delete the second half
 split_and_rename() {
@@ -31,13 +22,28 @@ split_and_rename() {
     head -n $half_lines "$input_file" > "$output_file"
 }
 
-# Perform 7 iterations of splitting and renaming
-# 
-previous_file="lorem.txt"
-for ((i=1; i<7; i++)); do
-    new_file="$initial_file$(($i+1))"
-    split_and_rename "$previous_file" "$new_file"
-    previous_file="$new_file"
-done
+# Perform 7 iterations of splitting and renaming (train.de)
+if [ ! -f $file1 ]; then
+    echo "train.de file not found!"
+else
+    previous_file=$file1
+    for ((i=1; i<7; i++)); do
+        new_file="train$(($i+1)).de"
+        split_and_rename "$previous_file" "$new_file"
+        previous_file="$new_file"
+    done
+fi
+
+# Perform 7 iterations of splitting and renaming (train.en)
+if [ ! -f $file2 ]; then
+    echo "train.en file not found!"
+else
+    previous_file=$file2
+    for ((i=1; i<7; i++)); do
+        new_file="train$(($i+1)).en"
+        split_and_rename "$previous_file" "$new_file"
+        previous_file="$new_file"
+    done
+fi
 
 echo "Finished job split script"
