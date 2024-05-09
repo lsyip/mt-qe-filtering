@@ -1,8 +1,6 @@
 #!/bin/bash
 # Modified version of prepare-iwslt14.sh from fairseq repo
 
-module load gcc/9.3.1
-
 
 SCRIPTS=mosesdecoder/scripts
 TOKENIZER=$SCRIPTS/tokenizer/tokenizer.perl

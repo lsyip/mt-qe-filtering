@@ -1,11 +1,5 @@
 #!/bin/bash -l
 
-#SBATCH --job-name=split-script
-#SBATCH --time=00:05:00
-#SBATCH --account=comp_sci
-#SBATCH --partition=gpu
-#SBATCH --nodes=1
-
 echo "Start job split script"
 
 # Define the initial file to split

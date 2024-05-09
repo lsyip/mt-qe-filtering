@@ -3,7 +3,7 @@ Experiment setup for evaluating the effects of quality estimation filtering for 
 
 ## Requirements and Installation
 - [PyTorch](https://pytorch.org/) version >= 1.10.0
-- Python version 3.9
+- Python version >= 3.8 (Experiments were run using Python 3.9.12)
 - [fairseq](https://github.com/facebookresearch/fairseq) : ``` pip install fairseq ```
 - [TransQuest](https://github.com/TharinduDR/TransQuest) : ``` pip install transquest ```
 

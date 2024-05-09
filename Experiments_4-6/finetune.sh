@@ -1,17 +1,7 @@
 #!/bin/bash -l
 
-#SBATCH --job-name=fine-tune
-#SBATCH --time=05:00:00
-#SBATCH --account=comp_sci
-#SBATCH --partition=gpu
-#SBATCH --nodes=1
 
 echo "Start job train 17-7"
-module load python/3.8
-module load gcc/9.3.1
-
-source ~/miniconda/etc/profile.d/conda.sh
-conda activate fairseq-env
 
 CUDA_VISIBLE_DEVICES=0 fairseq-train \
     binarized-data-v6/iwslt17.tokenized.de-en-finetune7 \
@@ -32,4 +22,4 @@ CUDA_VISIBLE_DEVICES=0 fairseq-train \
     --eval-bleu-print-samples \
     --best-checkpoint-metric bleu --maximize-best-checkpoint-metric
 
-echo "Finished fine-tuning 17-7"
+echo "Finished fine-tuning"
