@@ -1,17 +1,6 @@
 #!/bin/bash -l
 
-#SBATCH --job-name=train-iwslt17
-#SBATCH --time=12:00:00
-#SBATCH --account=comp_sci
-#SBATCH --partition=gpu
-#SBATCH --nodes=1
-
-echo "Start job"
-module load python/3.8
-module load gcc/9.3.1
-
-source ~/miniconda/etc/profile.d/conda.sh
-conda activate fairseq-env
+echo "Start job train-iwslt17.sh"
 
 CUDA_VISIBLE_DEVICES=0 fairseq-train \
     data-bin2/iwslt17.tokenized.de-en \
