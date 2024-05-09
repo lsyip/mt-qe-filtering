@@ -3,12 +3,19 @@ Experiment setup for evaluating the effects of quality estimation filtering for 
 
 ## Requirements and Installation
 - [PyTorch](https://pytorch.org/) version >= 1.10.0
-- Python verison >= 3.8
+- Python version 3.9
 - [fairseq](https://github.com/facebookresearch/fairseq) : ``` pip install fairseq ```
 - [TransQuest](https://github.com/TharinduDR/TransQuest) : ``` pip install transquest ```
 
+## Dataset
+The German-English IWSLT17 dataset can be found [here](https://wit3.fbk.eu/2017-01).
+1. Download 2017-01-trnmted.tgz
+2. Extract files with ``` tar -xzvf 2017-01-trnmted.tgz ```
+3. From the unzipped folder, also extract ```texts\DeEnItNlRo\DeEnItNlRo\DeEnItNlRo.tgz```
+4. Run ``` prep-iwslt17.sh ``` to prepare the train, test, and valid sets.
+
 ## Initial Data Split Preparation and Preprocessing
-1. Split train.de and train.en files using ``` Data_Preprocessing\split-data.sh ```. This will make all 7 dataset splits at once. 
+1. Split ``` train.de ``` and ``` train.en ``` files using ``` Data_Preprocessing\split-data.sh ```. This will make all 7 dataset splits at once. 
 2. Preprocess all split datasets using ``` Data_Preprocessing\preprocess.sh ```. Change paths to to point to your train, valid, and test set locations.
 
 ## Experiment 1
